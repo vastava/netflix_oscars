@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<style>
+        body {
+            font-family: "Arial", sans-serif;
+        }
+        
+        .label {
+            font-size: 13px;
+        }
+    </style>
+
+<!-- Create a div where the graph will take place -->
+<h3 class='graphic__hed tk-atlas'>By the Box Office Numbers: Netflix's biggest Oscar contenders</h3>
+<div id="my_linechart"></div>
+<script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 50, left: 80},
+    width = 480 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_linechart")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//Read the data
+d3.csv("/data/oscars_boxoffice.csv", function(data) {
+
+  // group the data: I want to draw one line per group
+  var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
+    .key(function(d) { return d.Movie;})
+    .entries(data);
+
+console.log(sumstat)
+
+  // Add X axis --> it is a date format
+  var x = d3.scaleLinear()
+    .domain(d3.extent(data, function(d) { return d.Week; }))
+    .range([ 0, width ]);
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x).ticks(5));
+
+svg.append("text")             
+      .attr("transform",
+            "translate(" + (width/2) + " ," + 
+                           (height + margin.top + 20) + ")")
+      .style("text-anchor", "middle")
+      .style("font-size", "15px")
+      .text("Weeks Since Opening");
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([0, d3.max(data, function(d) { return +d.PTA; })])
+    .range([ height, 0 ]);  
+  svg.append("g")
+    .call(d3.axisLeft(y));
+
+svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Average Revenue per Theater");   
+  // color palette
+  var res = sumstat.map(function(d){ return d.key }) // list of group names
+  console.log(res)
+  var color = d3.scaleOrdinal()
+    .domain(res)
+    .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
+
+  // Draw the line
+  svg.selectAll(".line")
+      .data(sumstat)
+      .enter()
+      .append("path")
+        .attr("fill", "none")
+        .attr("stroke", function(d){ return color(d.key) })
+        .attr("stroke-width", 1.5)
+        .attr("d", function(d){
+          return d3.line()
+            .x(function(d) { return x(d.Week); })
+            .y(function(d) { return y(d.PTA); })
+            (d.values)
+        })
+labels = ['Marriage Story', 'The Irishman', 'The Two Popes', 'Roma']
+var legspacing = 25;
+var color2 = d3.scaleOrdinal()
+    .domain(labels)
+    .range(['#e41a1c','#377eb8','#4daf4a','#984ea3'])
+  var legend = svg.selectAll(".legend")
+                .data(labels)
+                .enter()
+                .append("g")
+
+            legend.append("rect")
+                .attr("fill", color2)
+                .attr("width", 20)
+                .attr("height", 20)
+                .attr("y", function (d, i) {
+                    return i * legspacing + 10;
+                })
+                .attr("x", 250);
+
+            legend.append("text")
+                .attr("class", "label")
+                .attr("y", function (d, i) {
+                    return i * legspacing + 25;
+                })
+                .attr("x", 280)
+                .attr("text-anchor", "start")
+                .text(function (d, i) {
+                    return labels[i];
+                })
+                .style("font-style", "italic");
+  //  svg
+  //      .append("line")
+  //        .attr("x1", x(6) )
+  //        .attr("x2", x(6) )
+  //        .attr("y1", y(0))
+  //        .attr("y2", y(1200000))
+  //        .attr("stroke", "grey")
+  //        .attr("stroke-dasharray", "4")
+  //  svg
+  //      .append("line")
+  //        .attr("x1", x(6) )
+  //        .attr("x2", x(6) )
+  //        .attr("y1", y(1700000))
+  //        .attr("y2", y(2000000))
+  //        .attr("stroke", "grey")
+  //        .attr("stroke-dasharray", "4")
+  //  svg
+  //      .append("line")
+  //        .attr("x1", x(7) )
+  //        .attr("x2", x(7) )
+  //        .attr("y1", y(6600000))
+  //        .attr("y2", y(7600000))
+  //        .attr("stroke", "grey")
+  //        .attr("stroke-dasharray", "4")
+  //  svg
+  //      .append("line")
+  //        .attr("x1", x(7) )
+  //        .attr("x2", x(7) )
+  //        .attr("y1", y(0))
+  //        .attr("y2", y(5900000))
+  //        .attr("stroke", "grey")
+  //        .attr("stroke-dasharray", "4")
+  //  svg
+  //      .append("line")
+  //        .attr("x1", x(4) )
+  //        .attr("x2", x(4) )
+  //        .attr("y1", y(0))
+  //        .attr("y2", y(200000))
+  //        .attr("stroke", "grey")
+  //        .attr("stroke-dasharray", "4")
+  // svg
+  //      .append("line")
+  //        .attr("x1", x(4) )
+  //        .attr("x2", x(4) )
+  //        .attr("y1", y(500000))
+  //        .attr("y2", y(1450000))
+  //        .attr("stroke", "grey")
+  //        .attr("stroke-dasharray", "4")
+
+  //    svg
+  //      .append("text")
+  //      .attr("x", x(5))
+  //      .attr("y", y(6000))
+  //      .text("Marriage Story")
+  //      .style("font-size", "13px")
+  //      .style("font-style", "italic")
+  //   svg
+  //      .append("text")
+  //      .attr("x", x(5))
+  //      .attr("y", y(3000))
+  //      .text("begins streaming")
+  //      .style("font-size", "13px")
+
+  //   svg
+  //      .append("text")
+  //      .attr("x", x(6))
+  //      .attr("y", y(12000))
+  //      .text("The Irishman")
+  //      .style("font-size", "13px")
+  //      .style("font-style", "italic")
+  //   svg
+  //      .append("text")
+  //      .attr("x", x(6))
+  //      .attr("y", y(9000))
+  //      .text("begins streaming")
+  //      .style("font-size", "13px")
+  //   svg
+  //      .append("text")
+  //      .attr("x", x(3.12))
+  //      .attr("y", y(21000))
+  //      .text("Roma")
+  //      .style("font-size", "13px")
+  //      .style("font-style", "italic")
+  //   svg
+  //      .append("text")
+  //      .attr("x", x(3.96))
+  //      .attr("y", y(21000))
+  //      .text("begins")
+  //      .style("font-size", "13px")
+  //   svg
+  //      .append("text")
+  //      .attr("x", x(3.12))
+  //      .attr("y", y(18000))
+  //      .text("streaming")
+  //      .style("font-size", "13px")
+
+  //   svg
+  //      .append("text")
+  //      .attr("x", x(3.12))
+  //      .attr("y", y(12000))
+  //      .text("The Two Popes")
+  //      .style("font-size", "13px")
+  //      .style("font-style", "italic")
+  //   svg
+  //      .append("text")
+  //      .attr("x", x(3.12))
+  //      .attr("y", y(9000))
+  //      .text("begins streaming")
+  //      .style("font-size", "13px")
+
+
+})
+
+</script>
