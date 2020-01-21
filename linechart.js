@@ -16,7 +16,7 @@ function update2(selectedVar) {
   if(selectedVar === 'var3') {
 
 //Read the data
-d3.csv("/data/oscars_boxoffice.csv", function(data) {
+d3.csv("/netflix_oscars/data/oscars_boxoffice.csv", function(data) {
 
   // group the data: I want to draw one line per group
   var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
@@ -209,7 +209,7 @@ chart.append("text")
 
 
 })} else {
-	d3.csv("/data/oscars_boxoffice.csv", function(data) {
+	d3.csv("/netflix_oscars/data/oscars_boxoffice.csv", function(data) {
 
   // group the data: I want to draw one line per group
   var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
