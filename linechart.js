@@ -1,33 +1,10 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-
-<!-- Load d3.js -->
-<script src="https://d3js.org/d3.v4.js"></script>
-
-<style>
-        body {
-            font-family: "Arial", sans-serif;
-        }
-        
-        .label {
-            font-size: 13px;
-        }
-    </style>
-
-<!-- Create a div where the graph will take place -->
-<h3 class='graphic__hed tk-atlas'>By the Box Office Numbers: Netflix's biggest Oscar contenders</h3>
-<button class="button" onclick="update2('var3')">Est. Cumulative Revenue</button>
-<button class="button" onclick="update2('var4')">Est. Per Theater Average</button>
-<div id="my_linechart"></div>
-<script>
-
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 50, left: 80},
-    width = 480 - margin.left - margin.right,
+    width = 600 - margin.left - margin.right,
     height = 520 - margin.top - margin.bottom;
 
-// append the svg object to the body of the page
-var svg = d3.select("#my_linechart")
+// append the chart object to the body of the page
+var chart = d3.select("#my_linechart")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -52,12 +29,12 @@ console.log(sumstat)
   var x = d3.scaleLinear()
     .domain(d3.extent(data, function(d) { return d.Week; }))
     .range([ 0, width ]);
-  svg.append("g")
+  chart.append("g")
     .attr("transform", "translate(0," + height + ")")
     .attr("class", "first")
     .call(d3.axisBottom(x).ticks(5));
 
-svg.append("text")             
+chart.append("text")             
       .attr("transform",
             "translate(" + (width/2) + " ," + 
                            (height + margin.top + 20) + ")")
@@ -69,13 +46,13 @@ svg.append("text")
   var y = d3.scaleLinear()
     .domain([0, d3.max(data, function(d) { return +d.Est_Cumulative; })])
     .range([ height, 0 ]);  
-  svg.append("g")
+  chart.append("g")
   	.attr("class", "first")
     .call(d3.axisLeft(y));
 
 d3.selectAll(".second").remove()
 
-svg.append("text")
+chart.append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 0 - margin.left)
       .attr("x",0 - (height / 2))
@@ -91,7 +68,7 @@ svg.append("text")
     .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
 
   // Draw the line
-  svg.selectAll(".line")
+  chart.selectAll(".line")
       .data(sumstat)
       .enter()
       .append("path")
@@ -105,7 +82,7 @@ svg.append("text")
             .y(function(d) { return y(d.Est_Cumulative); })
             (d.values)
         })
-   svg
+   chart
        .append("line")
          .attr("x1", x(6) )
          .attr("x2", x(6) )
@@ -114,7 +91,7 @@ svg.append("text")
          .attr("stroke", "grey")
          .attr("stroke-dasharray", "4")
          .attr("class", "first")
-   svg
+   chart
        .append("line")
          .attr("x1", x(6) )
          .attr("x2", x(6) )
@@ -123,7 +100,7 @@ svg.append("text")
          .attr("stroke", "grey")
          .attr("stroke-dasharray", "4")
          .attr("class", "first")
-   svg
+   chart
        .append("line")
          .attr("x1", x(7) )
          .attr("x2", x(7) )
@@ -132,7 +109,7 @@ svg.append("text")
          .attr("stroke", "grey")
          .attr("stroke-dasharray", "4")
          .attr("class", "first")
-   svg
+   chart
        .append("line")
          .attr("x1", x(7) )
          .attr("x2", x(7) )
@@ -141,7 +118,7 @@ svg.append("text")
          .attr("stroke", "grey")
          .attr("stroke-dasharray", "4")
          .attr("class", "first")
-   svg
+   chart
        .append("line")
          .attr("x1", x(4) )
          .attr("x2", x(4) )
@@ -150,7 +127,7 @@ svg.append("text")
          .attr("stroke", "grey")
          .attr("stroke-dasharray", "4")
          .attr("class", "first")
-	svg
+	chart
        .append("line")
          .attr("x1", x(4) )
          .attr("x2", x(4) )
@@ -160,7 +137,7 @@ svg.append("text")
          .attr("stroke-dasharray", "4")
          .attr("class", "first")
 
-     svg
+     chart
        .append("text")
        .attr("x", x(5))
        .attr("y", y(1500000))
@@ -168,7 +145,7 @@ svg.append("text")
        .style("font-size", "13px")
        .style("font-style", "italic")
        .attr("class", "first")
-    svg
+    chart
        .append("text")
        .attr("x", x(5))
        .attr("y", y(1250000))
@@ -176,7 +153,7 @@ svg.append("text")
        .style("font-size", "13px")
        .attr("class", "first")
 
-    svg
+    chart
        .append("text")
        .attr("x", x(6))
        .attr("y", y(6300000))
@@ -184,14 +161,14 @@ svg.append("text")
        .style("font-size", "13px")
        .style("font-style", "italic")
        .attr("class", "first")
-    svg
+    chart
        .append("text")
        .attr("x", x(6))
        .attr("y", y(6050000))
        .text("begins streaming")
        .style("font-size", "13px")
        .attr("class", "first")
-    svg
+    chart
        .append("text")
        .attr("x", x(3.12))
        .attr("y", y(1800000))
@@ -199,14 +176,14 @@ svg.append("text")
        .style("font-size", "13px")
        .style("font-style", "italic")
        .attr("class", "first")
-    svg
+    chart
        .append("text")
-       .attr("x", x(3.96))
+       .attr("x", x(3.76))
        .attr("y", y(1800000))
        .text("begins")
        .style("font-size", "13px")
        .attr("class", "first")
-    svg
+    chart
        .append("text")
        .attr("x", x(3.12))
        .attr("y", y(1550000))
@@ -214,7 +191,7 @@ svg.append("text")
        .style("font-size", "13px")
        .attr("class", "first")
 
-    svg
+    chart
        .append("text")
        .attr("x", x(3.12))
        .attr("y", y(309000))
@@ -222,7 +199,7 @@ svg.append("text")
        .style("font-size", "13px")
        .style("font-style", "italic")
        .attr("class", "first")
-    svg
+    chart
        .append("text")
        .attr("x", x(3.12))
        .attr("y", y(89000))
@@ -245,13 +222,13 @@ console.log(sumstat)
   var x = d3.scaleLinear()
     .domain(d3.extent(data, function(d) { return d.Week; }))
     .range([ 0, width ]);
-  svg.append("g")
+  chart.append("g")
     .attr("transform", "translate(0," + height + ")")
     .attr("class", "second")
     .call(d3.axisBottom(x).ticks(5));
 d3.selectAll(".first").remove()
 
-svg.append("text")             
+chart.append("text")             
       .attr("transform",
             "translate(" + (width/2) + " ," + 
                            (height + margin.top + 20) + ")")
@@ -263,11 +240,11 @@ svg.append("text")
   var y = d3.scaleLinear()
     .domain([0, d3.max(data, function(d) { return +d.PTA; })])
     .range([ height, 0 ]);  
-  svg.append("g")
+  chart.append("g")
   	.attr("class", "second")
     .call(d3.axisLeft(y));
 
-svg.append("text")
+chart.append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 0 - margin.left)
       .attr("x",0 - (height / 2))
@@ -283,7 +260,7 @@ svg.append("text")
     .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
 
   // Draw the line
-  svg.selectAll(".line")
+  chart.selectAll(".line")
       .data(sumstat)
       .enter()
       .append("path")
@@ -302,7 +279,7 @@ var legspacing = 25;
 var color2 = d3.scaleOrdinal()
     .domain(labels)
     .range(['#e41a1c','#377eb8','#4daf4a','#984ea3'])
-  var legend = svg.selectAll(".legend")
+  var legend = chart.selectAll(".legend")
                 .data(labels)
                 .enter()
                 .append("g")
@@ -328,7 +305,7 @@ var color2 = d3.scaleOrdinal()
                     return labels[i];
                 })
                 .style("font-style", "italic");
-  //  svg
+  //  chart
   //      .append("line")
   //        .attr("x1", x(6) )
   //        .attr("x2", x(6) )
@@ -336,7 +313,7 @@ var color2 = d3.scaleOrdinal()
   //        .attr("y2", y(1200000))
   //        .attr("stroke", "grey")
   //        .attr("stroke-dasharray", "4")
-  //  svg
+  //  chart
   //      .append("line")
   //        .attr("x1", x(6) )
   //        .attr("x2", x(6) )
@@ -344,7 +321,7 @@ var color2 = d3.scaleOrdinal()
   //        .attr("y2", y(2000000))
   //        .attr("stroke", "grey")
   //        .attr("stroke-dasharray", "4")
-  //  svg
+  //  chart
   //      .append("line")
   //        .attr("x1", x(7) )
   //        .attr("x2", x(7) )
@@ -352,7 +329,7 @@ var color2 = d3.scaleOrdinal()
   //        .attr("y2", y(7600000))
   //        .attr("stroke", "grey")
   //        .attr("stroke-dasharray", "4")
-  //  svg
+  //  chart
   //      .append("line")
   //        .attr("x1", x(7) )
   //        .attr("x2", x(7) )
@@ -360,7 +337,7 @@ var color2 = d3.scaleOrdinal()
   //        .attr("y2", y(5900000))
   //        .attr("stroke", "grey")
   //        .attr("stroke-dasharray", "4")
-  //  svg
+  //  chart
   //      .append("line")
   //        .attr("x1", x(4) )
   //        .attr("x2", x(4) )
@@ -368,7 +345,7 @@ var color2 = d3.scaleOrdinal()
   //        .attr("y2", y(200000))
   //        .attr("stroke", "grey")
   //        .attr("stroke-dasharray", "4")
-  // svg
+  // chart
   //      .append("line")
   //        .attr("x1", x(4) )
   //        .attr("x2", x(4) )
@@ -377,61 +354,61 @@ var color2 = d3.scaleOrdinal()
   //        .attr("stroke", "grey")
   //        .attr("stroke-dasharray", "4")
 
-  //    svg
+  //    chart
   //      .append("text")
   //      .attr("x", x(5))
   //      .attr("y", y(6000))
   //      .text("Marriage Story")
   //      .style("font-size", "13px")
   //      .style("font-style", "italic")
-  //   svg
+  //   chart
   //      .append("text")
   //      .attr("x", x(5))
   //      .attr("y", y(3000))
   //      .text("begins streaming")
   //      .style("font-size", "13px")
 
-  //   svg
+  //   chart
   //      .append("text")
   //      .attr("x", x(6))
   //      .attr("y", y(12000))
   //      .text("The Irishman")
   //      .style("font-size", "13px")
   //      .style("font-style", "italic")
-  //   svg
+  //   chart
   //      .append("text")
   //      .attr("x", x(6))
   //      .attr("y", y(9000))
   //      .text("begins streaming")
   //      .style("font-size", "13px")
-  //   svg
+  //   chart
   //      .append("text")
   //      .attr("x", x(3.12))
   //      .attr("y", y(21000))
   //      .text("Roma")
   //      .style("font-size", "13px")
   //      .style("font-style", "italic")
-  //   svg
+  //   chart
   //      .append("text")
   //      .attr("x", x(3.96))
   //      .attr("y", y(21000))
   //      .text("begins")
   //      .style("font-size", "13px")
-  //   svg
+  //   chart
   //      .append("text")
   //      .attr("x", x(3.12))
   //      .attr("y", y(18000))
   //      .text("streaming")
   //      .style("font-size", "13px")
 
-  //   svg
+  //   chart
   //      .append("text")
   //      .attr("x", x(3.12))
   //      .attr("y", y(12000))
   //      .text("The Two Popes")
   //      .style("font-size", "13px")
   //      .style("font-style", "italic")
-  //   svg
+  //   chart
   //      .append("text")
   //      .attr("x", x(3.12))
   //      .attr("y", y(9000))
@@ -443,5 +420,3 @@ var color2 = d3.scaleOrdinal()
 }}
 
 update2('var3')
-
-</script>
