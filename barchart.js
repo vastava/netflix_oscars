@@ -17,7 +17,7 @@ function update(selectedVar) {
   if(selectedVar === 'var1') {
 // Parse the Data
 // d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv", function(data) {
-d3.csv("/data/oscars_netflix_updated.csv", function(data) {
+d3.csv("/netflix_oscars/data/oscars_netflix_updated.csv", function(data) {
 
   // List of subgroups = header of the csv files = soil condition here
   var subgroups = data.columns.slice(22)
@@ -165,7 +165,7 @@ console.log(legend)
 // legend.remove()
 
 })}else {
-  d3.csv("/data/oscars_netflix_movies_updated.csv", function(data) {
+  d3.csv("/netflix_oscars/data/oscars_netflix_movies_updated.csv", function(data) {
 
   // List of subgroups = header of the csv files = soil condition here
   var subgroups = data.columns.slice(2)
