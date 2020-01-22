@@ -138,6 +138,30 @@
           font-family: Arial;
         }
 
+        a {
+/*          text-decoration: none;
+*/          position: relative;
+          color: inherit;
+
+          &:after {
+            content: "";
+              background: #cbe1f6;
+              position: absolute;
+              display: inline-block;
+              height: 0.5em;
+              width: calc(100% + 4px);
+              left: 50%;
+              bottom: 0;
+              transform: translateX(-50%);
+              z-index: -1;
+              transition: 0.2s;
+          }
+
+          &:hover:after {
+            height: 1.2em;
+          }
+        }
+
     </style>
 
 <!-- Create a div where the graph will take place -->
@@ -151,9 +175,9 @@
       <h1 class='tk-canela'>
         Netflix, streaming and the Oscars: a battle between innovation and prestige
       </h1>
-      <p><span style="float: left; font-size: 600%; line-height: 80%;vertical-align: middle; padding: 1 8px;">S</span>o you’ve read the headlines — “Netflix has taken over the Oscars,” and many more of the like. In a few short years, Netflix went from being a fringe Oscars competitor to leading the field in total nominations.</p>
+      <p><span style="float: left; font-size: 600%; line-height: 80%;vertical-align: middle; padding: 1 8px;">S</span>o you’ve read the headlines — “<a href="https://qz.com/1784161/netflixs-leads-all-2020-oscar-nominations-thanks-to-the-irishman-and-marriage-story/">Netflix has taken over the Oscars</a>,” and <a href="https://www.hollywoodreporter.com/news/oscars-netflix-leads-all-hollywood-studios-24-nominations-1268945">many</a> <a href="https://www.businessinsider.com/number-of-netflix-oscar-nominations-per-year-chart-2020-1">more</a> of the <a href="">like</a>. In a few short years, Netflix went from being a fringe Oscars competitor to leading the field in total nominations.</p>
 
-<p>Last year, the studio received its first Oscar nomination for best picture. This year, in 2020, movies released by Netflix garnered a whopping 24 nominations, almost doubling the total sum of nominations from previous years for the studio. It is undoubtedly a major victory for Netflix amid ongoing tensions with the Academy and industry professionals.</p>
+<p>Last year, the studio received its first Oscar nomination for best picture. This year, in 2020, movies released by Netflix garnered a whopping 24 nominations, almost doubling the total sum of nominations from previous years for the studio. It is undoubtedly a major victory for Netflix amid ongoing <a href="https://www.theverge.com/2018/12/3/18123883/roma-netflix-best-picture-oscar-buzz-release-strategy-alfonso-cuaron">tensions</a> with the Academy and industry professionals.</p>
         <div class='graphic'>
           <h3 class='graphic__hed tk-atlas'>Oscar nominations earned by Netflix, per year</h3>
           <h5 class='graphic__dek tk-atlas'>Hover over each section to see the nominees.</h5>
@@ -168,9 +192,9 @@
     </section>
     <div class="divider"/>
     <section id="graphic2">
-      <p>In order to be eligible for an Oscar, a film must be screened in theaters for at least seven days in both New York City and Los Angeles. In 2018, Netflix began making exceptions to its strict day-and-date policy. Previously, any films released by the studio in theaters began streaming on the same day — now, however, Netflix occassionally grants exclusive theatrical releases for films and begins streaming the film at a later date. </p>
+      <p>In order to be eligible for an Oscar, a film must be screened in theaters for at least seven days in both New York City and Los Angeles. In 2018, Netflix began making exceptions to its strict <a href="https://www.hollywoodreporter.com/heat-vision/netflix-grants-theatrical-release-andy-serkis-mowgli-1159414">day-and-date</a> policy. Previously, any films released by the studio in theaters began streaming on the same day — now, however, Netflix occassionally grants exclusive theatrical releases for films and begins streaming the film at a later date. </p>
 
-<p>Netflix released 10 movies with exclusive theatrical windows ahead of their online release in 2019, several of which went on to be nominated for an Oscar.</p>
+<p>Netflix <a href="https://www.theverge.com/2019/8/27/20835697/netflix-fall-movie-lineup-theatrical-release-steven-soderbergh-laundromat-martin-scorsese-irishman">released</a> 10 movies with exclusive theatrical windows ahead of their online release in 2019, several of which went on to be nominated for an Oscar.</p>
 
 <p>For comparison, Netflix gave only four films theatrical releases in 2018: <i>Bird Box, The Ballad of Buster Scruggs, Mowgli</i>, and the Academy Award-winning <i>Roma</i>. This year’s increase in Oscar nominations, therefore, isn’t necessarily a story of improving quality — it could be a story of Netflix's increasing will to screen original movies and toss their hat in the ring for an Oscar.</p>
       <div class='graphic'>
@@ -184,30 +208,30 @@
 </div>
 
     </section>
-    <p>Though Netflix does not publicly disclose box office figures for its films with theatrical releases, film newssite IndieWire was able to estimate weekend grosses by looking at individual theater's websites.</p>
+    <p>Though Netflix does not publicly disclose box office figures for its films with theatrical releases, film newssite <a href="https://www.indiewire.com/">IndieWire</a> was able to estimate weekend grosses by looking at individual theater's websites.</p>
 
-<p>In terms of revenue earned, Netflix's <i>The Irishman</i> has been the most successful with an estimated domestic gross of $7 million. Still, at its peak, <i>The Irishman</i> only played in 500 theaters (in its fifth week since opening). Critics have argued that Netflix is foregoing potentially "millions" by not giving the film a wide theatrical release.</p>
+<p>In terms of revenue earned, Netflix's <i>The Irishman</i> has been the most successful with an estimated domestic gross of $7 million. Still, at its peak, <i>The Irishman</i> only played in 500 theaters (in its fifth week since opening). Critics have <a href="https://www.cnbc.com/2019/11/07/why-netflix-isnt-giving-scorseses-the-irishman-a-wider-release.html">argued</a> that Netflix is foregoing potentially "millions" by not giving the film a wide theatrical release.</p>
 
 <p>Any earnings at the box office was unlikely to offset <i>The Irishman</i>'s reported budget of $159 million, though, under Netflix's current policy. Netflix films rarely stay in theaters for more than two months, with the notable exception of <i>Roma</i> — by its 15th week in theaters, <i>Roma</i> had grossed an estimated $3,975,000.</p>
 
 <p>Most Netflix films went down to minimal theater play and earnings following its online release, with <i>Roma</i>, again, being the exception. In its 10th week of release — the weekend following the Oscar nominations announcement — it made an additional $175,000, earning more than $3 million in sum.</p>
 
-<p>In the lead up to the 2019 Oscars ceremony, Netflix reportedly spent between $40 and $60 million promoting <i>Roma</i>. Despite the company's hesitance to screen original films in theaters and abandon its business model, it clearly wants to build prestige and money is little object in that race — <i>The Irishman</i>'s large budget is further confirmation.</p>
+<p>In the lead up to the 2019 Oscars ceremony, Netflix reportedly <a href="https://fortune.com/2019/02/25/netflix-roma-oscar-campaign-green-book/">spent</a> between $40 and $60 million promoting <i>Roma</i>. Despite the company's hesitance to screen original films in theaters and abandon its business model, it clearly wants to build prestige and money is little object in that race — <i>The Irishman</i>'s large budget is further confirmation.</p>
 
-<p><i>The Irishman</i>'s budget was initially estimated to be around $100 million due to the cost of de-aging technology and expensive CGI. Concerns about the cost and effectiveness of this technology caused Paramount Pictures to pull its support for the film in early 2017 — and in swooped Netflix.</p>
+<p><i>The Irishman</i>'s budget was <a href="https://www.indiewire.com/2017/02/martin-scorsese-the-irishman-robert-deniro-netflix-paramount-1201785658/">initially</a> estimated to be around $100 million due to the cost of de-aging technology and expensive CGI. Concerns about the cost and effectiveness of this technology caused Paramount Pictures to pull its support for the film in early 2017 — and in swooped Netflix.</p>
 
-<p>Martin Scorsese, the director behind <i>The Irishman</i>, has advocated for the theatrical experience on numerous occassions. Netflix, wanting to keep Scorsese happy while not backing down on its stance, gave the film a more than a monthlong run and established partnerships with small, independent theater chains.</p> 
+<p>Martin Scorsese, the director behind <i>The Irishman</i>, has <a href="https://qz.com/1742603/martin-scorsese-says-theaters-shouldnt-just-be-for-marvel-movies/">advocated</a> for the theatrical experience on numerous occassions. Netflix, wanting to keep Scorsese happy while not backing down on its stance, gave the film a more than a monthlong run and established partnerships with small, independent theater chains.</p> 
 
-<p>Several of the U.S.'s biggest theater chains — including AMC, Regal and Cinemark — have refused to play Netflix's movies because it did not agree to an exclusive 90 day release window, as is par for the course in Hollywood.</p>
+<p>Several of the U.S.'s biggest theater chains — including AMC, Regal and Cinemark — have <a href="https://www.latimes.com/entertainment-arts/business/story/2020-01-13/oscar-nominations-2020-amc-regal-theaters-boycott-netflix">refused</a> to play Netflix's movies because it did not agree to an exclusive 90 day release window, as is par for the course in Hollywood.</p>
 
 <p>The result is that landmark films from legendary filmmakers like Scorsese — and even those who are newer to the scene — are blacklisted from wide releases because of theater chains adhering to old business practices, and Netflix's determination to push the ball forward in the spirit of change.</p>
 
 <div class='about'>
         <div class='prose'>
           <h2 class='graphic__hed tk-atlas'><b>About</b></h2>
-          <p>The Oscar nomination data was collected from this Wikipedia article. The revenue data was largely collected from IndieWire's weekly box office round-ups.
+          <p>The Oscar nomination data was collected from <a href="https://en.wikipedia.org/wiki/List_of_accolades_received_by_Netflix">this</a> Wikipedia article. The revenue data was largely collected from <a href="https://www.indiewire.com/">IndieWire</a>'s weekly box office round-ups.
             </p>
-          <p>This project is open-source on Github.</p>
+          <p>This project is open-source on <a href="https://github.com/vastava/netflix_oscars">Github</a>.</p>
           <a href="https://twitter.com/anjalii_shrivas?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @anjalii_shrivas</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
           <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
